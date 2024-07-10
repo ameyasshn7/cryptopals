@@ -15,6 +15,7 @@ frequencies_ ={'a': 0.0774934698168604, 'b': 0.014035108384843497, 'c': 0.026659
               'y': 0.02280189765502375, 'z': 0.000715596168173934}
 
 frequencies = get_freqs('frankenstein.txt',ascii_lowercase)
+
 @dataclass
 class ScoredGuess:
     score: float = float("inf")
