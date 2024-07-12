@@ -2,11 +2,10 @@ from collections import Counter
 from string import ascii_letters, ascii_lowercase, ascii_uppercase
 
 
-with open('frankenstein.txt') as f:
-    book = f.read()
 
-def get_freqs(text, letters):
-    with open(text) as f:
+
+def get_freqs(letters):
+    with open('frankenstein.txt') as f:
         book = f.read()
     counts = Counter()
     for letter in letters:
