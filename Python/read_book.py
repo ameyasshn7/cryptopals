@@ -17,4 +17,4 @@ def get_freqs(letters):
 
 
 if __name__ == '__main__':
-    print(get_freqs(book,ascii_lowercase))
+    print(get_freqs(ascii_lowercase))
