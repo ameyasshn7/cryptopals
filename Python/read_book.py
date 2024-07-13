@@ -1,5 +1,5 @@
 from collections import Counter
-from string import ascii_letters, ascii_lowercase, ascii_uppercase
+from string import ascii_lowercase
 
 
 

@@ -1,5 +1,4 @@
-from collections import Counter
-from string import ascii_letters, ascii_lowercase, ascii_uppercase
+from string import ascii_lowercase
 from pprint import pprint
 from dataclasses import dataclass, astuple
 from typing import Optional
