@@ -1,8 +1,9 @@
 from challenge2 import bytes_xor
 from challenge3 import crack_xor_cipher
+from challenge5 import repeatingKeyXOR
 from typing import Dict, List, Tuple
 from itertools import combinations
-from base64 import b16decode,b64encode 
+from base64 import b16decode,b64encode, b64decode
 import pprint
 
 def hamming_distance(a: bytes,b: bytes) -> int:
@@ -38,7 +39,7 @@ def crack_repeating_key_xor(ciphertext: bytes, keysize: int) -> Tuple[float, byt
     chunks = [ciphertext[i::keysize] for i in range(keysize)]
     cracks = [crack_xor_cipher(chunk) for chunk in chunks]
 
-    combined_scores = sum(guess.score for guess in cracks)
+    combined_scores = sum(guess.score for guess in cracks) / keysize
     key = bytes(guess.key for guess in cracks)
     return combined_scores , key
 
@@ -52,10 +53,10 @@ if __name__ == '__main__':
     with open('6.txt') as f:
         b64 = f.read()
     
-    ciphertext = b64encode(b64)
+    ciphertext = b64decode(b64)
     keysizes = guess_keysize(ciphertext,5)
-    pprint('best keysize guesses (confidence, size):')
-    pprint(keysizes)
+    print('best keysize guesses (confidence, size): \n')
+    print(keysizes)
 
     candidates =  [crack_repeating_key_xor(ciphertext, guess) for _,guess in keysizes]
     candidates.sort()
@@ -65,7 +66,7 @@ if __name__ == '__main__':
     print('top guess :')
     print(f'{best_key=}')
     print('plaintext = \n')
-    print(crack_repeating_key_xor(best_key,ciphertext).decode('ascii'))
+    print(repeatingKeyXOR(best_key,ciphertext).decode('ascii'))
 
 
 
